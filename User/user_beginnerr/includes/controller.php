@@ -38,12 +38,12 @@ if(isset($_POST['upload_art']))
     if($conn->query($query))
     {
         $mesg = "Hurry! you are ready to go";            
-        header("location: ..\upload_art?hurry=".$mesg);
+        header("location: ..\upload_art.php?hurry=".$mesg);
     }
     else
     {
         $mesg = "Error: Something wents wrong!";            
-        header("location: ..\upload_art?error=".$mesg);
+        header("location: ..\upload_art.php?error=".$mesg);
     }
 }
 
