@@ -108,6 +108,99 @@ h4 {
           </ul>
         </div>
         <ul class="navbar-nav navbar-right">
+          <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
+              class="nav-link nav-link-lg message-toggle"><i data-feather="mail"></i>
+              
+                <?php 
+                  if($count['Total']!=0)
+                  { ?>
+                    <span class='badge headerBadge1'>
+                      <?php echo $count['Total'] ?>
+                    </span>
+                    <?php  }
+                ?>  </a>
+            <div class="dropdown-menu dropdown-list dropdown-menu-right pullDown">
+              <div class="dropdown-header">
+                Messages
+              </div>
+              <div class="dropdown-list-content dropdown-list-message">
+                <?php 
+                    while($message = $getMessages->fetch_assoc()):
+                      $UID = $message['SID'];
+                    $GetUserInfo = $conn->query("SELECT * FROM `tbl_user` WHERE `ID` = $UID");
+                    $User = $GetUserInfo->fetch_assoc();
+                ?>
+                  <a href="inbox.php" class="dropdown-item"> <span class="dropdown-item-avatar
+                        text-white"> <img alt="image" src="images/User.png" class="rounded-circle">
+                    </span> <span class="dropdown-item-desc"> <span class="message-user"><?php echo $User['FirstName']." ".$User['LastName'] ?></span>
+                      <span class="time messege-text"><?php echo $message['Mesg'] ?></span>
+                      <span class="time"><?php echo $message['DateTime'] ?></span>
+                    </span>
+                  </a>
+                <?php endwhile; ?>
+              </div>
+              <div class="dropdown-footer text-center">
+                <a href="inbox.php">View All <i class="fas fa-chevron-right"></i></a>
+              </div>
+            </div>
+          </li>
+          <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
+              class="nav-link notification-toggle nav-link-lg">
+              <?php 
+                  if($GetNoti['Total']!=0)
+                  { ?>
+                    <i data-feather="bell" class="bell"></i>
+                    <?php  } else {
+                ?> 
+                <i data-feather="bell" ></i>
+              <?php } ?> 
+              
+            </a>
+            <div class="dropdown-menu dropdown-list dropdown-menu-right pullDown">
+              <div class="dropdown-header">
+                Notifications
+              </div>
+              <div class="dropdown-list-content dropdown-list-icons">
+              <?php 
+                    while($notification = $getNotification->fetch_assoc()):
+                      if($notification['Status']=="C"){
+                ?>
+                <a href="notification.php" class="dropdown-item dropdown-item-unread"> <span
+                    class="dropdown-item-icon bg-primary text-white"> <i class="fas
+												fa-user"></i>
+                  </span> <span class="dropdown-item-desc"> <?php echo $notification['Noti'] ?> <span class="time"><?php echo $notification['DateTime'] ?></span>
+                  </span>
+                </a> 
+                <?php
+                      }
+                    else if($notification['Status']=="I"){
+                ?>
+                <a href="notification.php" class="dropdown-item dropdown-item-unread"> <span
+                    class="dropdown-item-icon bg-primary text-white"> <i class="fas
+												fa-code"></i>
+                  </span> <span class="dropdown-item-desc"> <?php echo $notification['Noti'] ?> <span class="time"><?php echo $notification['DateTime'] ?></span>
+                  </span>
+                </a>
+                <?php
+                      }
+                    else if($notification['Status']=="D"){
+                ?>
+                <a href="notification.php" class="dropdown-item dropdown-item-unread"> <span
+                    class="dropdown-item-icon bg-primary text-white"> <i class="fas
+												fa-check"></i>
+                  </span> <span class="dropdown-item-desc"> <?php echo $notification['Noti'] ?> <span class="time"><?php echo $notification['DateTime'] ?></span>
+                  </span>
+                </a> 
+                <?php
+                      }
+                    endwhile;
+                ?>
+              </div>
+              <div class="dropdown-footer text-center">
+                <a href="notification.php">View All <i class="fas fa-chevron-right"></i></a>
+              </div>
+            </div>
+          </li>
           <li class="dropdown"><a href="#" data-toggle="dropdown"
               class="nav-link dropdown-toggle nav-link-lg nav-link-user"> <img alt="image" src="images/User.png"
                 class="user-img-radious-style"> <span class="d-sm-none d-lg-inline-block"></span></a>
@@ -146,6 +239,24 @@ h4 {
                 <li><a class="nav-link" href="upload_art.php">Upload new</a></li>
                 <li><a class="nav-link" href="all_collection.php">All collection</a></li>
               </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="menu-toggle nav-link has-dropdown"><i
+                  data-feather="user-check"></i><span>Maintain Gallary </span></a>
+              <ul class="dropdown-menu">
+                <li><a href="Users.php">Users</a></li>
+                <li><a href="Arts.php">Art</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="mail"></i><span>Messages</span></a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-link" href="inbox.php">Inbox</a></li>
+                <li><a class="nav-link" href="sent.php">Sent</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="exhibiition.php" class="nav-link"><i data-feather="command"></i><span>Exhibitions</span></a>
             </li>
           </ul>
         </aside>

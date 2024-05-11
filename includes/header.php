@@ -2,9 +2,6 @@
 	session_start();
 	include('includes/config.php');
 
-	$Gallary = $conn->query("SELECT * FROM `tbl_description` WHERE `ID` = 1");
-	$getGallary = $Gallary->fetch_assoc();
-
     $rs = $conn->query("SELECT COUNT(*) AS `Total`,`ID`,`Status` FROM `tbl_auction` WHERE `Status` = 'B' OR `Status` = 'P'") or die ($mysqli->error);
 	$AuctionData = $rs->fetch_assoc();
 ?>
@@ -137,10 +134,10 @@ h4 {
 			<div class="col-md-12 text-center">
 				<div class="text-homeimage">
 					<div class="maintext-image" data-scrollreveal="enter top over 1.5s after 0.1s">
-						<?php echo $getGallary['Title'] ?>
+					ART MADE ARTIST
 					</div>
 					<div class="subtext-image" data-scrollreveal="enter bottom over 1.7s after 0.3s">
-						<?php echo $getGallary['Subtitle'] ?>
+					Art belongs to everyone
 					</div>
 				</div>
 			</div>
@@ -148,7 +145,7 @@ h4 {
             <div class="col-md-12 text-center">
 				<div class="text-pageheader">
 					<div class="subtext-image" data-scrollreveal="enter bottom over 1.7s after 0.0s">
-						 <?php echo $_GET['page'] ?>
+					Art belongs to everyone
 					</div>
 				</div>
 			</div>

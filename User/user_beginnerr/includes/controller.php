@@ -22,8 +22,7 @@ if(isset($_POST['upload_art']))
     }
 
     $UID = $_SESSION['ID'];
-    $filename = "ART_" . $UID . "_" . time() . "_" . date('Y_m_d') . "." . $ext;
-    
+    $filename = "ART_".$UID."_".time()."_".date('Y-m-d').".".$ext;
     if(in_array($filetype, $allowed)){ 
         $location = "..\..\Content/Upload/".$UID."/Art/";
         if(!file_exists($location)) {mkdir($location,0777,true);}
@@ -38,12 +37,12 @@ if(isset($_POST['upload_art']))
     if($conn->query($query))
     {
         $mesg = "Hurry! you are ready to go";            
-        header("location: ..\upload_art.php?hurry=".$mesg);
+        header("location: ..\upload_art?hurry=".$mesg);
     }
     else
     {
         $mesg = "Error: Something wents wrong!";            
-        header("location: ..\upload_art.php?error=".$mesg);
+        header("location: ..\upload_art?error=".$mesg);
     }
 }
 
@@ -249,7 +248,7 @@ if(isset($_POST['apply_exibition']))
     }
 
     $UID = $_SESSION['ID'];
-    $filename = "ART_".$ID."_".time()."_".date().".".$ext;
+    $filename = "ART_".$UID."_".time()."_".date('Y-m-d').".".$ext;
     
     
     $query = "INSERT INTO `tbl_auction_date`(`ArtName`, `Discription`, `DemandPrice`, `ArtBy`) VALUES ('$Title','Dis','$Price','$ABY')";
@@ -299,9 +298,8 @@ if(isset($_POST['pay']))
         $mesg = "Error: Please select a valid file format.";            
         die($mesg);
     }
-
     $UID = $_SESSION['ID'];
-    $filename = "ART_".$ID."_".time()."_".date().".".$ext;
+    $filename = "ART_".$UID."_".time()."_".date('Y-m-d').".".$ext;
     
     
     $query = "INSERT INTO `tbl_pay`(`AID`, `Image`) VALUE ('$ID','$filename')";
