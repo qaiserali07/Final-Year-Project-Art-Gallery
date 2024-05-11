@@ -270,7 +270,7 @@ if(isset($_POST['start_exhibition']))
     $End = $_POST['End'];
     $Title = $_POST['Title'];
 
-    if($conn->query("INSERT INTO `tbl_auction`(`AName`, `StartAt`, `EndAt`) VALUES ('$Title','$Start','$End')"))
+    if($conn->query("INSERT INTO `tbl_auction`(`AName`, `StartAt`, `EndAt`,`Status`) VALUES ('$Title','$Start','$End','B')"))
     {
         $getAllUsers = $conn->query("SELECT * FROM `tbl_user` WHERE `Role` = 'P'");
 

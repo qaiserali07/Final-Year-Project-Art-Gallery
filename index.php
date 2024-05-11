@@ -5,6 +5,7 @@
 	
 ?>
 
+
 <?php
     $q = "SELECT * FROM `tbl_paintings` WHERE 1 ORDER BY `DateTime` DESC";
     $rs = $conn->query($q) or die ($mysqli->error);

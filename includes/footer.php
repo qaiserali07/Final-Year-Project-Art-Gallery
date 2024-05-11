@@ -27,9 +27,9 @@
 				 Connect with Art Gallary
 			</p>
 			<ul class="social-iconsfooter">
-				<li><a href="tel:<?php echo $getGallary['Contact'] ?>"><i class="fa fa-phone"></i></a></li>
-				<li><a href="<?php echo $getGallary['Facebook'] ?>"><i class="fab fa-facebook-f"></i></a></li>
-				<li><a href="<?php echo $getGallary['Twitter'] ?>"><i class="fab fa-twitter"></i></a></li>
+				<li><a href="tel:#"><i class="fa fa-phone"></i></a></li>
+				<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+				<li><a href="#"><i class="fab fa-twitter"></i></a></li>
 			</ul>
 			<p>
 				 &copy; 2020 Art Gallary<br/>
