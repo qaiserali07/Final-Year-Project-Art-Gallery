@@ -318,7 +318,7 @@ if(isset($_GET['helt_exhibition']))
         $BittingDetails = $getAllBitting->fetch_assoc();
         $Total = $Total + $BittingDetails['Price'];
         $SOLDTO = $BittingDetails['UID'];
-        $masg = "Congo! you have brought this art at: ".$BittingDetails['Price']." Rs/- Be ready we will deleiver this shortly.. Please pay this amount online and send a slip";
+        $masg = "Congo! you have brought this art at: ".$BittingDetails['Price']." £ Be ready we will deleiver this shortly.. Please pay this amount online and send a slip";
         $link = "pay.php?ID=".$AID;
         $link = urlencode($link);
         $conn->query("INSERT INTO `tbl_notifications`(`NID`, `Noti`, `Status`, `link`) VALUES ('$SOLDTO','$masg','D','$link')");

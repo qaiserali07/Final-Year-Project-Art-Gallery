@@ -57,12 +57,12 @@
 			</div>
 		</div>
 		<div class="col-md-4">
-		<a href="#" class="btn btn-buynow"><?php if($getCount['Total']>0 && $BittingDetails != null ) echo $BittingDetails['Price']." /- Rs " ; else echo "No bid yet!" ?></a>
+		<a href="#" class="btn btn-buynow"><?php if($getCount['Total']>0 && $BittingDetails != null ) echo $BittingDetails['Price']." £ " ; else echo "No bid yet!" ?></a>
 			<div class="properties-box">
 				<ul class="unstyle">
 					<li><b class="propertyname">Title:</b> <?php echo $data["ArtName"] ?></li>
                     <li><b class="propertyname">Artist:</b> <a href = "User/user_beginnerr/user_info.php?ID=<?php echo $getUser["ID"] ?>"><?php echo $getUser["FirstName"]." ".$getUser["LastName"] ?></a></li>
-					<li><b class="propertyname">Demand price:</b> <?php echo $data["DemandPrice"] ?> /- Rs</li>
+					<li><b class="propertyname">Demand price:</b> <?php echo $data["DemandPrice"] ?> £</li>
 				</ul>
 			</div>
 		</div>
@@ -70,7 +70,7 @@
 		<div class="col-md-4">
 			<div class="properties-box">
 				<ul class="unstyle">
-					<?php if(isset($getCount) && is_array($getCount) && isset($getCount['Total']) && $getCount['Total'] > 0  ) echo '<li><b class="propertyname">Lastest bid price:</b> '. $BittingDetails['Price'] .'/- Rs</li>'; else echo "" ?>
+					<?php if(isset($getCount) && is_array($getCount) && isset($getCount['Total']) && $getCount['Total'] > 0  ) echo '<li><b class="propertyname">Lastest bid price:</b> '. $BittingDetails['Price'] .'£</li>'; else echo "" ?>
 					<li>
 						<table class ="table" border=1>
 							<tr>
