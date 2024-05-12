@@ -10,7 +10,8 @@
 
 
 <?php
-    $q = "SELECT * FROM `tbl_auction_date` WHERE `Status` <> -1";
+ if($AuctionData['Total']!=0){
+    $q = "SELECT * FROM `tbl_auction_date` WHERE `Status` = 0";
     $rs = $conn->query($q) or die ($mysqli->error);
 ?>
 
@@ -43,7 +44,7 @@
 						<h1><?php echo $data['ArtName'] ?></h1>
 						</a>
 						<span class="price">
-							<span class="edd_price"><?php echo $data['DemandPrice'] ?> Rs</span>
+							<span class="edd_price"><?php echo $data['DemandPrice'] ?> £</span>
 						</span>
 					</div>
 				</div>
@@ -53,4 +54,4 @@
 </div>
 </section>
 
-<?php include('includes/footer.php');?>
+<?php } include('includes/footer.php');?>

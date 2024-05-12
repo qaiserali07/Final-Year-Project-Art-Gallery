@@ -15,11 +15,11 @@
                 <input name="AID" hidden value="<?php echo $ID ?>">
                 <div>
                         <b>
-                        HBL: 12329888931898391
+                        Bank: Revolut
                         <br>
-                        Easypaisa: 9345894984
+                        Sort Code: 04-29-09
                         <br>
-                        JazzCash: 923232930293
+                        Account#: 03189198
                         </b>
                 </div>
                 </textarea>
