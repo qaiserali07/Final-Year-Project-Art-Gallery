@@ -8,7 +8,7 @@ if(isset($_POST['upload_art']))
 
     if(!isset($_FILES["Art"]) && $_FILES["Art"]["error"] == 0){
         $mesg = "Error: File error ". $_FILES["Art"]["error"];
-        header("location: ..\upload_art?error=".$mesg);
+        header("location: ..\upload_art.php?error=".$mesg);
     }
 
     $allowed = array("jpg" => "image/jpg", "jpeg" => "image/jpeg", "gif" => "image/gif", "png" => "image/png");
@@ -18,7 +18,7 @@ if(isset($_POST['upload_art']))
     $ext = pathinfo($filename, PATHINFO_EXTENSION);
     if(!array_key_exists($ext, $allowed)){
         $mesg = "Error: Please select a valid file format.";            
-        header("location: ..\upload_art?error=".$mesg);
+        header("location: ..\upload_art.php?error=".$mesg);
     }
 
     $UID = $_SESSION['ID'];
@@ -37,12 +37,12 @@ if(isset($_POST['upload_art']))
     if($conn->query($query))
     {
         $mesg = "Hurry! you are ready to go";            
-        header("location: ..\upload_art?hurry=".$mesg);
+        header("location: ..\upload_art.php?hurry=".$mesg);
     }
     else
     {
         $mesg = "Error: Something wents wrong!";            
-        header("location: ..\upload_art?error=".$mesg);
+        header("location: ..\upload_art.php?error=".$mesg);
     }
 }
 
@@ -305,6 +305,7 @@ if(isset($_GET['start_exhibition']))
 if(isset($_GET['helt_exhibition']))
 {
     $Total = 0;
+    $SOLDTO = -1;
     $getAllAutionData = $conn->query("SELECT * FROM `tbl_auction_date` WHERE `Status` = 0");
     
 
@@ -316,12 +317,15 @@ if(isset($_GET['helt_exhibition']))
         $AID = $AutionData['ID'];
         $getAllBitting = $conn->query("SELECT * FROM `tbl_bit` WHERE `AID` = $AID ORDER BY `ID` DESC");
         $BittingDetails = $getAllBitting->fetch_assoc();
-        $Total = $Total + $BittingDetails['Price'];
-        $SOLDTO = $BittingDetails['UID'];
-        $masg = "Congo! you have brought this art at: ".$BittingDetails['Price']." £ Be ready we will deleiver this shortly.. Please pay this amount online and send a slip";
-        $link = "pay.php?ID=".$AID;
-        $link = urlencode($link);
-        $conn->query("INSERT INTO `tbl_notifications`(`NID`, `Noti`, `Status`, `link`) VALUES ('$SOLDTO','$masg','D','$link')");
+        if($BittingDetails != null){
+            $Total = $Total + $BittingDetails['Price'];
+            $SOLDTO = $BittingDetails['UID'];
+            $masg = "Congo! you have brought this art at: ".$BittingDetails['Price']." £ Be ready we will deleiver this shortly.. Please pay this amount online and send a slip";
+            $link = "pay.php?ID=".$AID;
+            $link = urlencode($link);
+            $conn->query("INSERT INTO `tbl_notifications`(`NID`, `Noti`, `Status`, `link`) VALUES ('$SOLDTO','$masg','D','$link')");   
+        }
+
         $conn->query("UPDATE `tbl_auction_date` SET `SoldTO` = $SOLDTO, `Status` = $AUID where `ID`=$AID");
     endwhile;
     

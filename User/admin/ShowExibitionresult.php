@@ -63,7 +63,9 @@
                                     <td><?php echo $art['ArtName'] ?></td>
                                     <td><?php echo "<a href='user_info.php?ID=".$getUser['ID']."' target='_blank'>".$getUser['FirstName']." ".$getUser['LastName']."</a>" ?></td>
                                     <td><?php if($BittingDetails != null && $BittingDetails['Price']!='') echo $BittingDetails['Price']; else echo "<p class='alert alert-warning text-center'>Not yet!</p>";  ?></td>
-                                    <td><?php echo "<a href='user_info.php?ID=".$Buyyed['ID']."' target='_blank'>".$Buyyed['FirstName']." ".$Buyyed['LastName']."</a>" ?></td>
+                                    <td>
+                                      <?php  if($Buyyed != null) { echo "<a href='user_info.php?ID=".$Buyyed['ID']."' target='_blank'>".$Buyyed['FirstName']." ".$Buyyed['LastName']."</a>";  }else{ echo "-"; } ?>
+                                    </td>
                                     <td>
                                       <?php if($getPaySlip != null ){ ?>
                                       <div class="chocolat-parent">
