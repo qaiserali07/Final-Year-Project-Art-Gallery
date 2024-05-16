@@ -8,7 +8,7 @@ if(isset($_POST['upload_art']))
 
     if(!isset($_FILES["Art"]) && ($_FILES["Art"]["error"] == 0)){
         $mesg = "Error: File error ". $_FILES["Art"]["error"];
-        header("location: ..\upload_art?error=".$mesg);
+        header("location: ..\upload_art.php?error=".$mesg);
     }
 
     $allowed = array("jpg" => "image/jpg", "jpeg" => "image/jpeg", "gif" => "image/gif", "png" => "image/png");
@@ -18,7 +18,7 @@ if(isset($_POST['upload_art']))
     $ext = pathinfo($filename, PATHINFO_EXTENSION);
     if(!array_key_exists($ext, $allowed)){
         $mesg = "Error: Please select a valid file format.";            
-        header("location: ..\upload_art?error=".$mesg);
+        header("location: ..\upload_art.php?error=".$mesg);
     }
 
     $UID = $_SESSION['ID'];
@@ -37,12 +37,12 @@ if(isset($_POST['upload_art']))
     if($conn->query($query))
     {
         $mesg = "Hurry! you are ready to go";            
-        header("location: ..\upload_art?hurry=".$mesg);
+        header("location: ..\upload_art.php?hurry=".$mesg);
     }
     else
     {
         $mesg = "Error: Something wents wrong!";            
-        header("location: ..\upload_art?error=".$mesg);
+        header("location: ..\upload_art.php?error=".$mesg);
     }
 }
 

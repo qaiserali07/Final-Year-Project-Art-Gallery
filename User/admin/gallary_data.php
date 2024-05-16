@@ -53,7 +53,7 @@
                                     <td><?php echo $art['ArtName'] ?></td>
                                     <td><?php echo $getUser['FirstName']." ".$getUser['LastName'] ?></td>
                                     <td><?php echo $art['DemandPrice'] ?></td>
-                                    <td><?php if($BittingDetails['Price']!='') echo $BittingDetails['Price']; else echo "<p class='alert alert-warning text-center'>Not yet!</p>";  ?></td>
+                                    <td><?php if($BittingDetails!=null && $BittingDetails['Price']!='') echo $BittingDetails['Price']; else echo "<p class='alert alert-warning text-center'>Not yet!</p>";  ?></td>
                                     <td><a href = "exhibit_art_detail.php?ID=<?php echo $art['ID'] ?>" class = "btn btn-primary">View Details</a> </td>
                                 </tr>
                             <?php $i++; endwhile; ?>
